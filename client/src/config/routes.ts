@@ -57,6 +57,4 @@ const mainRoutes: IRoute[] = [
 
 const routes: IRoute[] = [...authRoutes, ...blogRoutes, ...mainRoutes];
 
-console.log(routes);
-
 export default routes;

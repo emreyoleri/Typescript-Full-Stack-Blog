@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import UserContext from '../contexts/user';
 import IPageProps from '../interfaces/page';
 import firebase from 'firebase/compat';
-import { SignInWithSocialMedia as SocialMediaPopup } from '../modules/auth';
+import { Authenticate, SignInWithSocialMedia as SocialMediaPopup } from '../modules/auth';
 import logging from '../config/logging';
 import CenterPiece from '../components/CenterPiece';
 import { Button, Card, CardBody, CardHeader } from 'reactstrap';
@@ -16,8 +16,8 @@ const LoginPage: React.FC<IPageProps> = (props) => {
     const [error, setError] = useState<string>('');
 
     const userContext = useContext(UserContext);
-    const history = useNavigate();
-    const isLogin = useLocation().pathname.includes('login');
+    const navigate = useNavigate();
+    const isLogin = window.location.pathname.includes('login');
 
     const SignInWithSocialMedia = (provider: firebase.auth.AuthProvider) => {
         if (error !== '') setError('');
@@ -37,8 +37,15 @@ const LoginPage: React.FC<IPageProps> = (props) => {
                         try {
                             let fire_token = await user.getIdToken();
 
-                            /* if we get a token, auth with the backend */
-                            
+                            Authenticate(uid, name, fire_token, (error, _user) => {
+                                if (error) {
+                                    setError(error);
+                                    setAuthenticating(false);
+                                } else if (_user) {
+                                    userContext.userDispatch({ type: 'login', payload: { user: _user, fire_token } });
+                                    navigate('/');
+                                }
+                            });
                         } catch (error) {
                             setError('Invalid Token');
                             logging.error(error);

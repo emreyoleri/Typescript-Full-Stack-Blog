@@ -2,8 +2,10 @@ import React, { useEffect, useReducer, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import AuthRoute from './components/AuthRoute';
 import LoadingComponent from './components/LoadingComponent';
+import logging from './config/logging';
 import routes from './config/routes';
 import { initialUserState, UserContextProvider, userReducer } from './contexts/user';
+import { Validate } from './modules/auth';
 
 export interface IApplicationProps {}
 
@@ -28,7 +30,8 @@ const Application: React.FC<IApplicationProps> = (props) => {
     const CheckLocalStorageForCredentials = () => {
         setAuthStage('Checking credentials ...');
 
-        const fire_token = localStorage.getItem('fireToken');
+        const token = localStorage.getItem('fire_token');
+        const fire_token = token ? JSON.parse(token) : null;
 
         if (fire_token === null) {
             userDispatch({ type: 'logout', payload: initialUserState });
@@ -37,11 +40,22 @@ const Application: React.FC<IApplicationProps> = (props) => {
                 setLoading(false);
             }, 1000);
         } else {
-            /* valiedatewith the backend */
-            setAuthStage(' credentials found, validating ...');
-            setTimeout(() => {
-                setLoading(false);
-            }, 1000);
+            return Validate(fire_token, (error, user) => {
+                if (error) {
+                    logging.error(error);
+                    setAuthStage('User not valid, logging out ...');
+                    userDispatch({ type: 'logout', payload: initialUserState });
+                    setTimeout(() => {
+                        setLoading(false);
+                    }, 1000);
+                } else if (user) {
+                    setAuthStage('User authenticated.');
+                    userDispatch({ type: 'login', payload: { user, fire_token } });
+                    setTimeout(() => {
+                        setLoading(false);
+                    }, 1000);
+                }
+            });
         }
     };
 

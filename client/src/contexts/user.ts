@@ -22,10 +22,11 @@ export const userReducer = (state: IUserState, action: IUserActions) => {
 
     switch (action.type) {
         case 'login':
-            localStorage.setItem('fireToken', JSON.stringify(fire_token));
+            localStorage.setItem('fire_token', JSON.stringify(fire_token));
             return { user, fire_token };
+
         case 'logout':
-            localStorage.removeItem('fireToken');
+            localStorage.removeItem('fire_token');
             return initialUserState;
 
         default:

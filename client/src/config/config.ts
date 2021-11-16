@@ -9,7 +9,7 @@ const config = {
         measurementId: 'G-WEM7C4C4LM'
     },
     server: {
-        url: 'http://localhost:3000'
+        url: 'http://localhost:5000'
     }
 };
 
