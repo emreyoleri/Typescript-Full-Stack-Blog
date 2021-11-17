@@ -4,6 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
+        "start" : "ts-node-dev src/server.ts",
         "build": "rm -rf build && prettier --write src/ && tsc"
     },
     "author": "",

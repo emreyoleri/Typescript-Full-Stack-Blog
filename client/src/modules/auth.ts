@@ -24,6 +24,12 @@ export const Authenticate = async (uid: string, name: string, fire_token: string
             headers: { authorization: `Bearer ${fire_token}` }
         });
 
+        /*  axios.post(`${config.server.url}/users/login` , {uid,name} , {
+            headers : {
+                authorization: `Bearer ${fire_token}`
+            }
+        }) */
+
         if (response.status === 200 || response.status === 201 || response.status === 304) {
             logging.info('Successfuly authenicated. ');
             callback(null, response.data.user);
