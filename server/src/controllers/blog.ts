@@ -16,11 +16,13 @@ const create = (req: Request, res: Response, next: NextFunction) => {
         headline,
         picture
     });
+
+    console.log(blog);
     return blog
         .save()
         .then((newBlog) => {
             logging.info(`New blog created.`);
-            return res.status(401).json({
+            return res.status(201).json({
                 blog: newBlog
             });
         })
@@ -111,7 +113,7 @@ const update = (req: Request, res: Response, next: NextFunction) => {
                     .save()
                     .then((newBlog) => {
                         logging.info(`Blog updated.`);
-                        return res.status(401).json({
+                        return res.status(201).json({
                             blog: newBlog
                         });
                     })

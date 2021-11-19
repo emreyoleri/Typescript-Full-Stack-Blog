@@ -17,9 +17,11 @@ const Application: React.FC<IApplicationProps> = (props) => {
     const [authStage, setAuthStage] = useState<string>('Chechking localstorage ....');
 
     useEffect(() => {
-        setTimeout(() => {
+        CheckLocalStorageForCredentials();
+
+        setInterval(() => {
             CheckLocalStorageForCredentials();
-        }, 1000);
+        }, 20000);
     }, []);
 
     /*

@@ -12,7 +12,7 @@ const AuthRoute: React.FC<IAuthRouteProps> = (props) => {
 
     if (user._id === '') {
         logging.info('Unathorized, redirecting ...');
-        return <Navigate to="login" />;
+        return <Navigate to="/login" />;
     } else {
         return <>{children}</>;
     }

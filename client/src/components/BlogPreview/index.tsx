@@ -17,7 +17,7 @@ const BlogPreview: React.FC<IBLogPreviewProps> = (props) => {
     return (
         <Card className="border-0">
             <CardBody className="p-0">
-                <Link to={`/blogs/:${_id}`} style={{ textDecoration: 'none' }} className="text-primary">
+                <Link to={`/blogs/${_id}`} style={{ textDecoration: 'none' }} className="text-primary">
                     <h1>
                         <strong>{title}</strong>
                     </h1>
