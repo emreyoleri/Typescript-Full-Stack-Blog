@@ -59,7 +59,7 @@ const HomePage: React.FC<IPageProps> = (props) => {
                 {blogs.map((blog, index) => {
                     return (
                         <div key={index}>
-                            <BlogPreview _id={blog._id} title={blog.title} author={(blog.author as IUser).name} headline={blog.headline} createdAt={blog.createdAt} updatedAt={blog.updatedAt} />
+                            <BlogPreview _id={blog._id} title={blog.title} author={(blog.author as IUser).name} headline={blog.headline} createdAt={blog.createdAt} updatedAt={blog.updatedAt} picture={blog?.picture}/>
 
                             <hr />
                         </div>

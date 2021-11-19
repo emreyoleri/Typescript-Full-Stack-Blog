@@ -7,7 +7,7 @@ export interface ISuccessTextProps {
 const SuccessText: React.FC<ISuccessTextProps> = (props) => {
     const { success } = props;
 
-    if (success !== '') return null;
+    if (success === '') return null;
 
     return <small className="text-success">{success}</small>;
 };

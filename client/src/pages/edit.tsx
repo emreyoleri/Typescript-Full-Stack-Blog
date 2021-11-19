@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import IPageProps from '../interfaces/page';
 import { EditorState, ContentState, convertToRaw } from 'draft-js';
 import UserContext from '../contexts/user';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import config from '../config/config';
 import logging from '../config/logging';
@@ -20,6 +20,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 const EditPage: React.FC<IPageProps> = (props) => {
     const params = useParams();
+    const navigate = useNavigate();
     const [_id, setId] = useState<string>('');
     const [title, setTitle] = useState<string>('');
     const [picture, setPicture] = useState<string>('');
@@ -121,8 +122,9 @@ const EditPage: React.FC<IPageProps> = (props) => {
         }
 
         setError('');
-        setSuccess('');
+        setSuccess('Blog updating ...');
         setSaving(true);
+        setLoading(true);
 
         try {
             const response = await axios.patch(`${config.server.url}/blogs/update/${_id}`, {
@@ -135,6 +137,8 @@ const EditPage: React.FC<IPageProps> = (props) => {
 
             if (response.status === 201) {
                 setSuccess('Blog updated.');
+                setLoading(false);
+                navigate(`/blogs/${_id}`);
             } else {
                 setError('Unable to save blog');
             }
@@ -145,7 +149,7 @@ const EditPage: React.FC<IPageProps> = (props) => {
         }
     };
 
-    if (loading) return <LoadingComponent>Loading editor ...</LoadingComponent>;
+    if (loading) return <LoadingComponent>{success}</LoadingComponent>;
 
     return (
         <Container fluid className="p-0">

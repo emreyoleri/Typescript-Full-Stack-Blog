@@ -6,7 +6,7 @@ export interface ILoadingProps {
     dotType?: string;
 }
 
-const Loading: React.FC<ILoadingProps> = (props) => {
+export const Loading: React.FC<ILoadingProps> = (props) => {
     const { children, dotType } = props;
     return (
         <div className="text-center">

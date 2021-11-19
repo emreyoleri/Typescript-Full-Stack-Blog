@@ -39,7 +39,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
 
 Header.defaultProps = {
     height: '100%',
-    image: 'https://images.unsplash.com/photo-1488998427799-e3362cec87c3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80'
+    image: 'https://cdn.pixabay.com/photo/2015/10/02/15/07/diary-968603_960_720.jpg'
 };
 
 export default Header;
