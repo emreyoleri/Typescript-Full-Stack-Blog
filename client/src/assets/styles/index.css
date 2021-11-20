@@ -1,0 +1,7 @@
+html,
+body {
+    background-image: url('https://i.imgur.com/3hXohqn.png');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}

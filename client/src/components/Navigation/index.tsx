@@ -31,7 +31,6 @@ const Navigation: React.FC<INavigationProps> = (props) => {
                     </NavbarBrand>
                     <Nav className="mr-auto" navbar />
                     {user._id === '' ? (
-                        /* this will not be visible */
                         <div>
                             <NavbarText tag={Link} to="/login">
                                 Login

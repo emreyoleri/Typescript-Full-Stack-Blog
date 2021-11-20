@@ -13,7 +13,6 @@ const extractFirebaseInfo = (req: Request, res: Response, next: NextFunction) =>
             .verifyIdToken(token)
             .then((result) => {
                 if (result) {
-                    /* add info to response */
                     res.locals.firebase = result;
                     res.locals.fire_token = token;
                     next();

@@ -50,7 +50,7 @@ const HomePage: React.FC<IPageProps> = (props) => {
             <Header title="A Emre Blog Website" headline="Check out what people have to say!" />
 
             <Container className="mt-5">
-                {blogs.length === 0 && (
+                {blogs?.length === 0 && (
                     <p>
                         There ate no blogs yet, you should <Link to="/edit">Post</Link> one. 😊
                     </p>

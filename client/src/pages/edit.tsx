@@ -62,8 +62,6 @@ const EditPage: React.FC<IPageProps> = (props) => {
                     setHeadline(blog.headline);
                     setPicture(blog.picture || '');
 
-                    /* Convert html string to draft JS editor state  */
-
                     const contentBlock = htmlToDraft(blog.content);
                     const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
                     const _editorState = EditorState.createWithContent(contentState);

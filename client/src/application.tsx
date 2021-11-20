@@ -13,7 +13,6 @@ const Application: React.FC<IApplicationProps> = (props) => {
     const [userState, userDispatch] = useReducer(userReducer, initialUserState);
     const [loading, setLoading] = useState<boolean>(true);
 
-    /* Used for Debugging */
     const [authStage, setAuthStage] = useState<string>('Chechking localstorage ....');
 
     useEffect(() => {
@@ -24,11 +23,6 @@ const Application: React.FC<IApplicationProps> = (props) => {
         }, 20000);
     }, []);
 
-    /*
-     **Check to see if we have a token
-     *If we do, verify it with the backend
-     *If not, we are logged out initialy
-     */
     const CheckLocalStorageForCredentials = () => {
         setAuthStage('Checking credentials ...');
 
@@ -47,6 +41,7 @@ const Application: React.FC<IApplicationProps> = (props) => {
                     logging.error(error);
                     setAuthStage('User not valid, logging out ...');
                     userDispatch({ type: 'logout', payload: initialUserState });
+
                     setTimeout(() => {
                         setLoading(false);
                     }, 1000);
