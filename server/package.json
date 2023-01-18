@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "ts-node-dev src/server.ts",
-        "build": "rm -rf build && prettier --write src/ && tsc"
+        "start": "npm i -g ts-node-dev src/server.ts",
+        "build": "rm -rf build && npm i -g prettier --write src/ && tsc"
     },
     "author": "",
     "license": "ISC",
