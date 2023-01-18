@@ -52,7 +52,7 @@ const HomePage: React.FC<IPageProps> = (props) => {
             <Container className="mt-5">
                 {blogs?.length === 0 && (
                     <p>
-                        There ate no blogs yet, you should <Link to="/edit">Post</Link> one. 😊
+                        There are no blogs yet, you should <Link to="/edit">Post</Link> one. 😊
                     </p>
                 )}
 

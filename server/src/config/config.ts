@@ -8,7 +8,7 @@ const config = {
             autoIndex: false,
             retryWrites: false
         },
-        url: `mongodb+srv://emreyoleriDB:1052emre@cluster0.lzsew.mongodb.net/blogDB`
+        url: `mongodb+srv://admin:admin@ask-zaman-tuneli-cluste.cj5gn.mongodb.net/?retryWrites=true&w=majority`
     },
     server: {
         host: 'localhost',
