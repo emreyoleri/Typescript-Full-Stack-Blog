@@ -4,8 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start" : "ts-node-dev src/server.ts",
-        "build": "rm -rf build && tsc"
+        "start": "ts-node-dev src/server.ts",
+        "build": "rm -rf build && prettier --write src/ && tsc"
     },
     "author": "",
     "license": "ISC",
@@ -14,7 +14,10 @@
         "cors": "^2.8.5",
         "express": "^4.17.1",
         "firebase-admin": "^10.0.0",
-        "mongoose": "^6.0.12"
+        "mongoose": "^6.0.12",
+        "prettier": "^2.8.3",
+        "ts-node-dev": "^2.0.0",
+        "tsc": "^2.0.4"
     },
     "devDependencies": {
         "@types/express": "^4.17.13",
